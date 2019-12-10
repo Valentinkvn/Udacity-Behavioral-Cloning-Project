@@ -15,7 +15,10 @@ The main parts of the code:
 
 [//]: # (Image References)
 
-[image1]: error_loss.png "Loss Visualization"
+[image1]: ./readme_images/error_loss.png "Loss Visualization"
+[image2]: ./readme_images/original_image.png "Original image"
+[image3]: ./readme_images/cropped_image.png "Cropped image"
+[image4]: ./readme_images/three_images.png "All three images"
 
 ## The code
 
@@ -24,7 +27,12 @@ After the training, the weights of the model are saved into the "model.h5" file 
 
 ## Model Architecture and Training Strategy
 
+The images in the dataset were taken using three cameras, each of these were mounted on left, center and right part of the car.
+![alt text][image4] 
 The architecture used for the neural network was the one proposed by [NVIDIA](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf).
+The original images were cropped to match the input size of our network.
+![alt text][image2] 
+![alt text][image3] 
 It has an input size of 320 x 80 x 3 and a regression output of 1.
 I have implemented 2 preprocessing methods:
 - The first one is the cropping of the original images remaining with the region of interest in our images.

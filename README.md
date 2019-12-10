@@ -49,3 +49,6 @@ The loss function implemented here is Mean Square Error and the optimizer is Ada
 I ploted the training and validation loss for each epoch.
 
 ![alt text][image1] 
+
+Here is a reprezentation of the working behavioral cloning.
+![](./readme_images/gif.gif)

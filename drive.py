@@ -28,6 +28,7 @@ class SimplePIController:
         self.Ki = Ki
         self.set_point = 0.
         self.error = 0.
+        self.prior_error = 0.
         self.integral = 0.
 
     def set_desired(self, desired):
@@ -44,7 +45,7 @@ class SimplePIController:
 
 
 controller = SimplePIController(0.1, 0.002)
-set_speed = 9
+set_speed = 15
 controller.set_desired(set_speed)
 
 

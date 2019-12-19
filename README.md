@@ -57,11 +57,15 @@ I have implemented 2 preprocessing methods:
 For reducing the overfitting I used a dropout of 0.2 after each of the fully connected layers.
 The loss function implemented here is Mean Square Error and the optimizer is Adam Optimizer (better than Gradient Descend).
 
+#### Visualization of error loss
+
 I ploted the training and validation loss for each epoch.
 
 <p align="center">
   <img src="/readme_images/error_loss.png">
 </p>
+
+#### Demo
 
 Here is a reprezentation of the working behavioral cloning.
 

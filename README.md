@@ -29,17 +29,22 @@ Also, in the "drive.py" file you are able to see the python routine that manages
 
 ## Model Architecture and Training Strategy
 
-The images in the dataset were taken using three cameras, each of these were mounted on left, center and right part of the car.
-
-![alt text][image4] 
-
 The architecture used for the neural network was the one proposed by [NVIDIA](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf).
 
 <p align="center">
   <img src="/readme_images/model_architecture.png">
 </p>
 
-The original images were cropped to match the input size of our network.
+The model constists of 9 layers:
+- 1 normalization layer
+- 5 convolution layers
+- 3 fully connected layers followed by RELU activations and Dropouts of 0.2
+
+The images in the dataset were taken using three cameras, each of these were mounted on left, center and right part of the car. 
+
+![alt text][image4] 
+
+The original images were cropped to match the input size of our network. This method was used to be sure that only the important information about the road enters the network. 
 
 <p align="center">
   <img src="/readme_images/original_image.png">
@@ -49,13 +54,23 @@ The original images were cropped to match the input size of our network.
   <img src="/readme_images/cropped_image.png">
 </p>
 
-It has an input size of 320 x 80 x 3 and a regression output of 1 (the steering angle).
-I have implemented 2 preprocessing methods:
+The network has an input size of 320 x 80 x 3 and a regression output of 1 (the steering angle).
+
+I implemented 2 preprocessing methods:
 - The first one is the cropping of the original images remaining with the region of interest in our images (we don't need the top and the bottom of the images).
 - The second one is data normalizing implemented using keras Lambda layer (for a better convergence of the network).
 
-For reducing the overfitting I used a dropout of 0.2 after each of the fully connected layers.
-The loss function implemented here is Mean Square Error and the optimizer is Adam Optimizer (better than Gradient Descend).
+The split between the train and validation samples was done in a proportion of 4/1 (0.8/0.2). 
+
+For reducing the overfitting I used a dropout of 0.2 after each of the fully connected layers. Dropout is a regularization technique that deactivates few neurons in the neural network randomly in order to avoid the problem of overfitting.
+
+- The loss function implemented here is Mean Square Error.
+- The optimizer is Adam Optimizer (faster than Stochastic Gradient Descent).
+- The batch size is 32.
+
+
+
+
 
 ### Visualization of error loss
 

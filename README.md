@@ -91,7 +91,7 @@ I ploted the training and validation loss for each epoch.
 
 ### Demo
 
-Here is a reprezentation of the working behavioral cloning.
+Here is a reprezentation of the working behavioral cloning which was captured in one of the most difficult part of the first track.
 
 <p align="center">
   <img src="/readme_images/gif.gif">

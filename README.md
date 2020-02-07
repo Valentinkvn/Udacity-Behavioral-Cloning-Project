@@ -24,10 +24,12 @@ The main parts of the code:
 ## The code
 
 The primary code is written in the "model.py" file. There you'll be able to see the implementation of the network architecture and the model training.
+
 After the training, the weights of the model are saved into the "model.h5" file and it can be reused later.
+
 Also, in the "drive.py" file you are able to see the python routine that manages the controlling of the car. There is also a simple PI control implementation which is used to smooth the speed changings to a user input set value.
 
-## Model Architecture and Training Strategy
+## Model Architecture
 
 The architecture used for the neural network was the one proposed by [NVIDIA](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf).
 
@@ -37,8 +39,15 @@ The architecture used for the neural network was the one proposed by [NVIDIA](ht
 
 The model constists of 9 layers:
 - 1 normalization layer
-- 5 convolution layers
-- 3 fully connected layers followed by RELU activations and Dropouts of 0.2
+- 5 convolution layers which were designed to perform feature extraction
+- 3 fully connected layers which were designed to function as a controller for steering
+- each of those 3 fully connected layers are followed by a RELU activation and a Dropout of 0.2
+
+*Note that by training the system end-to-end, it is not possible to make a clean break between which parts of the network function primarily as feature extractor and which serve as controller.*
+
+## Training strategy
+
+For the training part I used the local dataset which was provided by the Udacity team.
 
 The images in the dataset were taken using three cameras, each of these were mounted on left, center and right part of the car. 
 
@@ -62,15 +71,15 @@ I implemented 2 preprocessing methods:
 
 The split between the train and validation samples was done in a proportion of 4/1 (0.8/0.2). 
 
+For having a memory-efficient approach, I used a generator which instead of storing the preprocessed data in memory all at once, it can pull pieces of the data and process them on the fly only when you need them.
+
 For reducing the overfitting I used a dropout of 0.2 after each of the fully connected layers. Dropout is a regularization technique that deactivates few neurons in the neural network randomly in order to avoid the problem of overfitting.
 
+#### Hyperparameters and function used
+- The batch size is 32.
+- The number of epochs is 5.
 - The loss function implemented here is Mean Square Error.
 - The optimizer is Adam Optimizer (faster than Stochastic Gradient Descent).
-- The batch size is 32.
-
-
-
-
 
 ### Visualization of error loss
 
@@ -87,3 +96,7 @@ Here is a reprezentation of the working behavioral cloning.
 <p align="center">
   <img src="/readme_images/gif.gif">
 </p>
+
+The car drives freely and without problems the entire portion of the first track. Having lag and synchronization problems with the simulator I couldn't train the model on the second track, so I don't have a visualization of the second track test.
+
+
